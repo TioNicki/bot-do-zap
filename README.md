@@ -28,7 +28,7 @@ O bot suporta as seguintes variáveis:
 - `DB_HOST` - host do banco de dados
 - `DB_PORT` - porta PostgreSQL (padrão `5432`)
 - `DB_NAME` - nome do banco de dados
-- `CHROMIUM_PATH` - caminho para o executável Chromium (padrão `/usr/bin/chromium`)
+- `CHROMIUM_PATH` - caminho para o executável Chromium ou Chrome no ambiente (padrão tenta `/usr/bin/chromium`, `/usr/bin/chromium-browser`, `/usr/bin/google-chrome-stable` e outros)
 
 ### Rodando localmente
 
@@ -45,7 +45,7 @@ Acesse `http://localhost:3000` para verificar se o servidor está ativo.
 3. Defina as variáveis de ambiente no Railway:
    - `PORT`
    - `DATABASE_URL` ou `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT`, `DB_NAME`
-   - `CHROMIUM_PATH` (se necessário)
+   - `CHROMIUM_PATH` (padrão tenta vários caminhos comuns, mas defina explicitamente se o container não encontrar o Chrome/Chromium)
 4. Configure a build:
    - Comando de build: `npm install`
    - Comando de start: `npm start`

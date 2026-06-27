@@ -1,3 +1,4 @@
+const fs = require('fs');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { Pool } = require('pg');
@@ -12,8 +13,29 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 // 1. CONFIGURAÇÕES E SERVIDOR
 // ==========================================
 const PORT = process.env.PORT || 3000;
-const CHROME_PATH = process.env.CHROMIUM_PATH || '/usr/bin/chromium';
+const CHROME_PATH = findChromiumPath();
 const DATABASE_URL = process.env.DATABASE_URL;
+
+function findChromiumPath() {
+    const candidates = [
+        process.env.CHROMIUM_PATH,
+        '/usr/bin/chromium',
+        '/usr/bin/chromium-browser',
+        '/usr/bin/google-chrome-stable',
+        '/usr/bin/google-chrome',
+        '/snap/bin/chromium'
+    ].filter(Boolean);
+
+    const found = candidates.find((path) => fs.existsSync(path));
+    if (found) {
+        console.log('Usando Chromium em:', found);
+        return found;
+    }
+
+    console.error('Nenhum executável Chromium encontrado nos caminhos esperados:', candidates.join(', '));
+    console.error('Defina CHROMIUM_PATH para o caminho correto do navegador no ambiente Railway.');
+    return '/usr/bin/chromium';
+}
 
 const app = express();
 app.get('/', (req, res) => res.send('Abrobra Online!'));
