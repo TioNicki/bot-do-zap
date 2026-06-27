@@ -27,9 +27,6 @@ const pool = new Pool({
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        // Removemos o executablePath manual. 
-        // O Render já tem o Chrome instalado em locais específicos, 
-        // mas o Puppeteer consegue achá-lo se dermos os argumentos certos.
         args: [
             '--no-sandbox', 
             '--disable-setuid-sandbox',
