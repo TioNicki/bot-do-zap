@@ -27,7 +27,6 @@ const pool = new Pool({
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        executablePath: '/usr/bin/google-chrome', // Caminho padrão no Render
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     }
 });
