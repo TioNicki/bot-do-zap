@@ -24,7 +24,13 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
-const client = new Client({ authStrategy: new LocalAuth() });
+const client = new Client({
+    authStrategy: new LocalAuth(),
+    puppeteer: {
+        executablePath: '/usr/bin/google-chrome', // Caminho padrão no Render
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    }
+});
 
 client.on('qr', qr => qrcode.generate(qr, { small: true }));
 client.on('ready', () => console.log('🤖 Abrobra está operante!'));
