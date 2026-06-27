@@ -1,4 +1,10 @@
 {
+  "name": "bot-financas",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "express": "^5.2.1",
