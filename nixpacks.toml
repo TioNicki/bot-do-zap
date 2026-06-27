@@ -7,11 +7,8 @@ nixPkgs = [
     "at-spi2-atk",
     "cups",
     "libdrm",
-    "libxkbcommon",
     "pango",
     "cairo",
-    "libgbm",
     "alsa-lib",
-    "expat",
-    "mesa"
+    "expat"
 ]
