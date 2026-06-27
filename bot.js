@@ -27,9 +27,18 @@ const pool = new Pool({
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        // O Render instala o Chrome aqui:
-        executablePath: '/opt/render/.cache/puppeteer/chrome/linux-146.0.7680.31/chrome-linux64/chrome',
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        // Removemos o executablePath manual. 
+        // O Render já tem o Chrome instalado em locais específicos, 
+        // mas o Puppeteer consegue achá-lo se dermos os argumentos certos.
+        args: [
+            '--no-sandbox', 
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--disable-gpu'
+        ]
     }
 });
 
